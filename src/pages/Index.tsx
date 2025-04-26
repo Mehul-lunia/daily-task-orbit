@@ -4,6 +4,7 @@ import { todoService } from "../services/todoService";
 import { TodoItem } from "../components/TodoItem";
 import { CreateTodoForm } from "../components/CreateTodoForm";
 import { useToast } from "@/components/ui/use-toast";
+import {Todo} from "@/types/todo.ts";
 
 const Index = () => {
   const { toast } = useToast();
@@ -27,7 +28,7 @@ const Index = () => {
   });
 
   const updateMutation = useMutation({
-    mutationFn: ({ id, status }: { id: string; status: boolean }) =>
+    mutationFn: ({ id, status }: { id: bigint; status: boolean }) =>
       todoService.updateTodoStatus(id, status),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["todos"] });
@@ -38,7 +39,7 @@ const Index = () => {
   });
 
   const deleteMutation = useMutation({
-    mutationFn: todoService.deleteTodo,
+    mutationFn: (id : bigint):Promise<void> => todoService.deleteTodo(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["todos"] });
       toast({ title: "Todo deleted successfully" });

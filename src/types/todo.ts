@@ -1,6 +1,5 @@
-
 export interface Todo {
-  id: string;
+  id: bigint;
   title: string;
   content: string;
   created_at: string;

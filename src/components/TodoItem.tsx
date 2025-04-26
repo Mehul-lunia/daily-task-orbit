@@ -7,8 +7,8 @@ import { TrashIcon } from "lucide-react";
 
 interface TodoItemProps {
   todo: Todo;
-  onStatusChange: (id: string, status: boolean) => void;
-  onDelete: (id: string) => void;
+    onStatusChange: (id: bigint, status: boolean) => void;
+  onDelete: (id: bigint) => void;
 }
 
 export const TodoItem = ({ todo, onStatusChange, onDelete }: TodoItemProps) => {
@@ -28,9 +28,7 @@ export const TodoItem = ({ todo, onStatusChange, onDelete }: TodoItemProps) => {
             {todo.content}
           </p>
           <div className="flex justify-between items-center mt-2">
-            <span className="text-xs text-gray-400">
-              Created: {format(new Date(todo.created_at), 'MMM d, yyyy')}
-            </span>
+
             <button
               onClick={() => onDelete(todo.id)}
               className="text-red-500 hover:text-red-700 p-1 rounded transition-colors"
