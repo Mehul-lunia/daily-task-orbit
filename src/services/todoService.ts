@@ -1,6 +1,7 @@
 
 import { Todo } from "../types/todo";
 
+
 const API_URL = "http://localhost:8090/api";
 
 export const todoService = {
